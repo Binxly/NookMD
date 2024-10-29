@@ -1,12 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Query, status
-from fastapi.responses import FileResponse
-from sqlalchemy.orm import Session
-from typing import List
 import os
 import uuid
+from typing import List
+
+from fastapi import (APIRouter, Depends, File, HTTPException, Query,
+                     UploadFile, status)
+from fastapi.responses import FileResponse
+from sqlalchemy.orm import Session
+
 from ..database import get_db
 from ..models import PDF
-from ..schemas import PDFResponse, PDFListResponse
+from ..schemas import PDFListResponse, PDFResponse
 
 router = APIRouter(prefix="/pdf", tags=["pdf"])
 

@@ -1,6 +1,7 @@
+import os
+
 import pytest
 from fastapi.testclient import TestClient
-import os
 
 
 def test_pdf_upload_and_retrieve(client: TestClient):

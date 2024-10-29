@@ -1,5 +1,6 @@
 import os
-from .database import engine, Base
+
+from .database import Base, engine
 from .models import PDF, Annotation, Note
 
 

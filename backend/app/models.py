@@ -1,7 +1,9 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from datetime import UTC, datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+
 from .database import Base
-from datetime import datetime, UTC
 
 
 class PDF(Base):

@@ -1,16 +1,16 @@
+import os
+import shutil
+import sys
+from pathlib import Path
+
 import pytest
 import pytest_asyncio
 from fastapi.testclient import TestClient
-import os
-import sys
-from pathlib import Path
-import shutil
-
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from app.main import app
 from app.database import Base, engine
+from app.main import app
 
 
 @pytest.fixture(autouse=True)
