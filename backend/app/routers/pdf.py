@@ -2,8 +2,7 @@ import os
 import uuid
 from typing import List
 
-from fastapi import (APIRouter, Depends, File, HTTPException, Query,
-                     UploadFile, status)
+from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile, status
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 
@@ -103,7 +102,14 @@ def download_pdf(pdf_id: int, db: Session = Depends(get_db)):
         db.commit()
         raise HTTPException(status_code=404, detail="PDF file not found on server")
 
-    return FileResponse(pdf.path, filename=pdf.filename, media_type="application/pdf")
+    headers = {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": f'inline; filename="{pdf.filename}"',
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    }
+    return FileResponse(pdf.path, headers=headers)
 
 
 @router.delete("/{pdf_id}")
